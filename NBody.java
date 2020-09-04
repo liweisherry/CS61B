@@ -11,12 +11,12 @@ public class NBody {
         double secondItemInFile = in.readDouble();
         return secondItemInFile;
     }
-    public static Body[] readBodies(String filename){
+    public static Planet[] readBodies(String filename){
 
         In in = new In(filename);
         int firstItemInFile = in.readInt();
         double secondItemInFile = in.readDouble();
-        Body[] bodies = new Body[firstItemInFile];
+        Planet[] bodies = new Planet[firstItemInFile];
         for (int i =0; i < bodies.length; i++){
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();
@@ -24,7 +24,7 @@ public class NBody {
             double yyVel = in.readDouble();
             double mass = in.readDouble();
             String imgFileName = in.readString();
-            bodies[i] = new Body(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);
+            bodies[i] = new Planet(xxPos,yyPos,xxVel,yyVel,mass,imgFileName);
         }
         return bodies;
 
@@ -35,13 +35,13 @@ public class NBody {
         double dt = Double.parseDouble(args[1]);
         String filename = args[2];
         double radius = readRadius(filename);
-        Body[] bodies = readBodies(filename);
+        Planet[] bodies = readBodies(filename);
         StdDraw.setScale(-radius,radius);
         StdDraw.clear();
         StdDraw.picture(0,0,imgs);
         StdDraw.show();
 
-        for (Body b : bodies){
+        for (Planet b : bodies){
             b.draw();
         }
 
@@ -63,7 +63,7 @@ public class NBody {
             StdDraw.setScale(-radius,radius);
             StdDraw.clear();
             StdDraw.picture(0,0,imgs);
-            for (Body b : bodies){
+            for (Planet b : bodies){
                 b.draw();
             }
             StdDraw.show();
